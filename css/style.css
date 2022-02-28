@@ -1,0 +1,10 @@
+
+.font-poppins{
+    font-family: 'Poppins', sans-serif;
+}
+.fw-medium{
+    font-weight: 500;
+}
+.green-bg{
+    background-color: rgba(111, 207, 151, 0.7);
+}
