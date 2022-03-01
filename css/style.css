@@ -8,12 +8,12 @@
 .fw-medium{
     font-weight: 500;
 }
-.green-bg{
-    background-color: rgba(111, 207, 151, 0.7);
+.blue-bg{
+    background-color: #052F48;
 }
 
 #mobile-details{
-    z-index: 99;
+    width: 80%;
     display: none;
 }
 .close-button{

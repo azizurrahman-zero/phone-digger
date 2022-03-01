@@ -28,7 +28,7 @@
 
 <body>
     <!-- header start -->
-    <header class="py-4 text-center green-bg">
+    <header class="py-4 text-center blue-bg text-white">
         <h2 class="mb-0 fw-bold font-poppins">Phone Digger</h2>
     </header>
     <!-- header end -->
@@ -39,7 +39,7 @@
         <div class="input-group my-4 w-50 mx-auto">
             <input id="search-box" type="text" class="form-control px-3 py-2 font-poppins fw-medium"
                 placeholder="Searching for Mobile?">
-            <button onclick="searchMobile()" class="btn btn-outline-secondary font-poppins fw-medium"
+            <button onclick="searchMobile()" class="btn font-poppins fw-medium blue-bg text-white"
                 type="button">Search</button>
         </div>
 
@@ -58,19 +58,15 @@
         </div>
 
         <!-- mobile details -->
-        <div id="mobile-details"
-            class="position-fixed top-50 start-50 translate-middle justify-content-center align-items-center w-50">
+        <div id="mobile-details" class="align-items-center mx-auto">
             <div class="card mb-3">
-                <div class="row g-0 align-items-center">
-                    <button onclick="closeDetails()" class="btn-close position-absolute close-button"></button>
-                    <div class="col-md-3">
+                <div class="row g-0 align-items-start">
+                    <div class="col-md-3 d-flex justify-content-center mt-5">
                         <img id="mobile-image" class="img-fluid rounded-start">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 id="mobile-name" class="card-title"></h5>
-                            </div>
+                            <h4 id="mobile-name" class="card-title"></h4>
                             <p id="details-text" class="card-text"></p>
                         </div>
                     </div>
@@ -84,7 +80,6 @@
         </div>
     </section>
     <!-- search section end -->
-
 
 
     <!-- bootstrap js -->
