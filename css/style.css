@@ -29,13 +29,9 @@
     display: none;
 }
 
-/* mobile devices */
-@media only screen and (max-width:576px) {
-    
-}
-
-/* tablet devices */
+/* media queries */
 @media only screen and (max-width:992px) {
+    /* search box */
     .search-div{
         width: 100%;
     }

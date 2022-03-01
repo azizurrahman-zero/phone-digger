@@ -33,6 +33,7 @@ const searchMobile = () => {
         resultError.style.display = 'none';
         resultContainer.style.display = 'none';
     }
+
     else {
         emptyError.style.display = 'none';
         resultError.style.display = 'none';
@@ -49,6 +50,8 @@ const displayResult = result => {
     const dataStatus = result.status;
     const mobiles = result.data;
     const mobilesSliced = mobiles.slice(0, 20);
+
+    // check error case
     if (dataStatus == true) {
         resultContainer.style.display = 'flex';
         mobilesSliced.forEach(mobile => {
@@ -88,13 +91,9 @@ const loadDetails = phoneId => {
         .then(data => displayDetails(data.data));
 }
 
-// get element
-
-
 // display mobile details function
 const displayDetails = mobile => {
     const { mainFeatures, others } = mobile;
-    console.log(mainFeatures);
     mobileDetails.style.display = 'block';
     mobileImage.src = `${mobile.image}`
     mobileName.innerText = `${mobile.name}`;
@@ -155,9 +154,4 @@ const displayDetails = mobile => {
                 </div>
             </p>
     `
-}
-
-// close button function
-const closeDetails = () => {
-    mobileDetails.style.display = 'none';
 }
