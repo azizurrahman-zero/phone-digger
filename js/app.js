@@ -11,11 +11,19 @@ const mobileImage = document.getElementById('mobile-image');
 const mobileName = document.getElementById('mobile-name');
 const detailsText = document.getElementById('details-text');
 
+// toggle spinner function
+const toggleSpinner = displayStyle => {
+    document.getElementById('toggle-spinner').style.display = displayStyle;
+}
+
 // search mobile function
 const searchMobile = () => {
     // get search text
     const searchBox = document.getElementById('search-box');
     const searchText = searchBox.value;
+
+    // display spinner
+    toggleSpinner('flex');
 
     // clear search box
     searchBox.value = '';
@@ -32,6 +40,9 @@ const searchMobile = () => {
         emptyError.style.display = 'block';
         resultError.style.display = 'none';
         resultContainer.style.display = 'none';
+
+        // hide spinner
+        toggleSpinner('none');
     }
 
     else {
@@ -80,11 +91,13 @@ const displayResult = result => {
         resultError.style.display = 'block';
         resultContainer.style.display = 'none';
     }
+
+    // hide spinner
+    toggleSpinner('none');
 }
 
 // load mobile details function
 const loadDetails = phoneId => {
-    window.location.href = '#mobile-details';
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
         .then(res => res.json())
@@ -103,23 +116,23 @@ const displayDetails = mobile => {
             <p class="fs-5 table-responsive mb-1"><i class="fa-solid fa-arrow-right"></i> Main Features : 
                 <div class="fs-6 mx-md-5 ms-1 me-3">
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Chipset</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Chipset</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.chipSet ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Display Size</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Display Size</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.displaySize ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Memory</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Memory</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.memory ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Storage</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Storage</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.storage ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Sensor</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Sensor</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.sensors ?? 'Unknown'}</p>
                     </div>
                 </div>
@@ -128,30 +141,31 @@ const displayDetails = mobile => {
             <p class="fs-5 table-responsive mb-1"><i class="fa-solid fa-arrow-right"></i> Other Features : 
                 <div class="fs-6 mx-md-5 ms-1 me-3">
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Bluetooth</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Bluetooth</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.Bluetooth ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">GPS</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">GPS</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.GPS ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">NFC</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">NFC</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.NFC ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Radio</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Radio</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.Radio ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">USB</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">USB</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.USB ?? 'Unknown'}</p>
                     </div>
                     <div class="row border-bottom">
-                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">WLAN</p>
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">WLAN</p>
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.WLAN ?? 'Unknown'}</p>
                     </div>
                 </div>
             </p>
     `
+    window.location.href = '#mobile-details';
 }
