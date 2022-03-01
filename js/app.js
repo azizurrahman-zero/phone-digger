@@ -78,7 +78,7 @@ const displayResult = result => {
                         <p class="card-text">by ${mobile.brand}</p>
                     </div>
                     <div class="card-footer bg-white border-top-0 d-flex flex-column align-items-md-start align-items-center">
-                        <button onclick="loadDetails('${mobile.slug}')" class="btn px-4 py-1 rounded-3 blue-bg text-white font-roboto fw-medium">Details</button>
+                        <button onclick="loadDetails('${mobile.slug}')" class="btn px-4 py-1 rounded-3 blue-bg text-white font-roboto fw-medium blue-shadow">Details</button>
                     </div>
                 </div>
             `

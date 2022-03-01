@@ -11,6 +11,9 @@
 .blue-bg{
     background-color: #052F48;
 }
+.blue-shadow:focus{
+    box-shadow: 0 0 0 0.1rem rgb(5 47 72 / 25%);
+}
 
 /* search box */
 .search-div{
