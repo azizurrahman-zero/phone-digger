@@ -20,15 +20,6 @@
     width: 50%;
 }
 
-/* mobile details */
-#mobile-details{
-    width: 80%;
-    display: none;
-}
-.release-date{
-    column-gap: 5px;
-}
-
 /* error messages */
 .error-message{
     width: 350px;
@@ -38,6 +29,20 @@
 /* spinner */
 .spinner{
     height: 70vh;
+    display: none;
+}
+
+/* mobile details */
+#mobile-details{
+    width: 80%;
+    display: none;
+}
+.release-date{
+    column-gap: 5px;
+}
+
+/* see more button */
+#see-more-div{
     display: none;
 }
 

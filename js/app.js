@@ -1,19 +1,14 @@
-// get error messages
-const emptyError = document.getElementById('empty-error');
-const resultError = document.getElementById('result-error');
-
-// get element for display result function
-const resultContainer = document.getElementById('result-container');
-
 // get elements for mobile details function
-const mobileDetails = document.getElementById('mobile-details');
 const mobileImage = document.getElementById('mobile-image');
 const mobileName = document.getElementById('mobile-name');
 const detailsText = document.getElementById('details-text');
 
-// toggle spinner function
-const toggleSpinner = displayStyle => {
-    document.getElementById('toggle-spinner').style.display = displayStyle;
+// get element for display result function
+const resultContainer = document.getElementById('result-container');
+
+// change display property value
+const changeDisplayValue = (idName, displayStyle) => {
+    document.getElementById(idName).style.display = displayStyle;
 }
 
 // search mobile function
@@ -23,7 +18,7 @@ const searchMobile = () => {
     const searchText = searchBox.value;
 
     // display spinner
-    toggleSpinner('flex');
+    changeDisplayValue('toggle-spinner', 'flex');
 
     // clear search box
     searchBox.value = '';
@@ -32,28 +27,47 @@ const searchMobile = () => {
     resultContainer.textContent = '';
 
     // hide more details
-    mobileDetails.style.display = 'none';
+    changeDisplayValue('mobile-details', 'none');
 
     // check error case
     if (searchText == '') {
-        // display search box empty error
-        emptyError.style.display = 'block';
-        resultError.style.display = 'none';
-        resultContainer.style.display = 'none';
-
-        // hide spinner
-        toggleSpinner('none');
+        changeDisplayValue('empty-error', 'block');
+        changeDisplayValue('result-error', 'none');
+        changeDisplayValue('result-container', 'none');
+        changeDisplayValue('see-more-div', 'none');
+        changeDisplayValue('toggle-spinner', 'none');
     }
 
     else {
-        emptyError.style.display = 'none';
-        resultError.style.display = 'none';
+        changeDisplayValue('empty-error', 'none');
+        changeDisplayValue('result-error', 'none');
         // load data
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
         fetch(url)
             .then(res => res.json())
             .then(data => displayResult(data));
     }
+}
+
+// display mobile function
+const displayMobiles = mobile => {
+    const div = document.createElement('div');
+    div.classList.add('col');
+    div.innerHTML = `
+        <div class="card h-100 rounded-3">
+            <div class="d-flex justify-content-center pt-3">
+                <img src="${mobile.image}" alt="${mobile.phone_name}">
+            </div>
+            <div class="card-body d-flex flex-column align-items-md-start align-items-center">
+                <h5 class="card-title text-md-start text-center">${mobile.phone_name}</h5>
+                <p class="card-text">by ${mobile.brand}</p>
+            </div>
+            <div class="card-footer bg-white border-top-0 d-flex flex-column align-items-md-start align-items-center">
+                <button onclick="loadDetails('${mobile.slug}')" class="btn px-4 py-1 rounded-3 blue-bg text-white font-roboto fw-medium blue-shadow">Details</button>
+            </div>
+        </div>
+    `;
+    resultContainer.appendChild(div);
 }
 
 // display result function 
@@ -64,36 +78,41 @@ const displayResult = result => {
 
     // check error case
     if (dataStatus == true) {
-        resultContainer.style.display = 'flex';
-        mobilesSliced.forEach(mobile => {
-            const div = document.createElement('div');
-            div.classList.add('col');
-            div.innerHTML = `
-                <div class="card h-100 rounded-3">
-                    <div class="d-flex justify-content-center pt-3">
-                        <img src="${mobile.image}" alt="${mobile.phone_name}">
-                    </div>
-                    <div class="card-body d-flex flex-column align-items-md-start align-items-center">
-                        <h5 class="card-title">${mobile.phone_name}</h5>
-                        <p class="card-text">by ${mobile.brand}</p>
-                    </div>
-                    <div class="card-footer bg-white border-top-0 d-flex flex-column align-items-md-start align-items-center">
-                        <button onclick="loadDetails('${mobile.slug}')" class="btn px-4 py-1 rounded-3 blue-bg text-white font-roboto fw-medium blue-shadow">Details</button>
-                    </div>
-                </div>
-            `
-            resultContainer.appendChild(div);
-        })
+        changeDisplayValue('result-container', 'flex');
+
+        if (mobiles.length > 20) {
+            mobilesSliced.forEach(mobile => {
+                displayMobiles(mobile);
+                changeDisplayValue('see-more-div', 'flex')
+                document.getElementById('see-more-button').onclick = () => {
+                    displayAllResult(mobiles);
+                }
+            })
+        }
+        else {
+            changeDisplayValue('see-more-div', 'none');
+            mobiles.forEach(mobile => {
+                displayMobiles(mobile);
+            })
+        }
     }
 
     else {
-        // display no result found error
-        resultError.style.display = 'block';
-        resultContainer.style.display = 'none';
+        changeDisplayValue('result-error', 'block');
+        changeDisplayValue('result-container', 'none');
+        changeDisplayValue('see-more-div', 'none');
     }
 
-    // hide spinner
-    toggleSpinner('none');
+    changeDisplayValue('toggle-spinner', 'none');
+}
+
+// display all result function
+const displayAllResult = mobiles => {
+    resultContainer.textContent = '';
+    mobiles.forEach(mobile => {
+        displayMobiles(mobile);
+        changeDisplayValue('see-more-div', 'none');
+    })
 }
 
 // load mobile details function
@@ -107,8 +126,8 @@ const loadDetails = phoneId => {
 // display mobile details function
 const displayDetails = mobile => {
     const { mainFeatures, others } = mobile;
-    mobileDetails.style.display = 'block';
-    mobileImage.src = `${mobile.image}`
+    changeDisplayValue('mobile-details', 'block');
+    mobileImage.src = `${mobile.image}`;
     mobileName.innerText = `${mobile.name}`;
     detailsText.innerHTML = `
             <div class="d-flex mb-2 release-date flex-sm-row flex-column">
