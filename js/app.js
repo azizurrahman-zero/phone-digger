@@ -1,4 +1,15 @@
+// get error messages
+const emptyError = document.getElementById('empty-error');
+const resultError = document.getElementById('result-error');
 
+// get element for display result function
+const resultContainer = document.getElementById('result-container');
+
+// get elements for mobile details function
+const mobileDetails = document.getElementById('mobile-details');
+const mobileImage = document.getElementById('mobile-image');
+const mobileName = document.getElementById('mobile-name');
+const detailsText = document.getElementById('details-text');
 
 // search mobile function
 const searchMobile = () => {
@@ -9,14 +20,22 @@ const searchMobile = () => {
     // empty search box
     searchBox.value = '';
 
+    // check error case
     if (searchText == '') {
-        blankErrorText.style.display = 'block';
+        // display search box empty error
+        emptyError.style.display = 'block';
+        resultError.style.display = 'none';
+        resultContainer.style.display = 'none';
     }
-    // load data
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayResult(data));
+    else {
+        emptyError.style.display = 'none';
+        resultError.style.display = 'none';
+        // load data
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displayResult(data));
+    }
 }
 
 // display result function 
@@ -24,8 +43,7 @@ const displayResult = result => {
     const dataStatus = result.status;
     const mobiles = result.data;
     if (dataStatus == true) {
-
-        const resultContainer = document.getElementById('result-container');
+        resultContainer.style.display = 'flex';
         mobiles.forEach(mobile => {
 
             const div = document.createElement('div');
@@ -47,8 +65,11 @@ const displayResult = result => {
             resultContainer.appendChild(div);
         })
     }
+
     else {
-        console.log(11);
+        // display no result found error
+        resultError.style.display = 'block';
+        resultContainer.style.display = 'none';
     }
 }
 
@@ -61,14 +82,11 @@ const loadDetails = phoneId => {
 }
 
 // get element
-const mobileDetails = document.getElementById('mobile-details');
-const mobileImage = document.getElementById('mobile-image');
-const mobileName = document.getElementById('mobile-name');
-const detailsText = document.getElementById('details-text');
+
 
 // display mobile details function
 const displayDetails = mobile => {
-    console.log(mobile)
+
     mobileDetails.style.display = 'block';
     mobileImage.src = `${mobile.image}`
     mobileName.innerText = `${mobile.name}`;

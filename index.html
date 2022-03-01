@@ -14,6 +14,9 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500&display=swap"
         rel="stylesheet">
 
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/1f5ccc1474.js" crossorigin="anonymous"></script>
+
     <!-- bootstrap stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -38,6 +41,20 @@
                 placeholder="Searching for Mobile?">
             <button onclick="searchMobile()" class="btn btn-outline-secondary font-poppins fw-medium"
                 type="button">Search</button>
+        </div>
+
+        <!-- error messages -->
+        <div class="d-flex justify-content-center">
+            <div id="empty-error" class="alert alert-danger rounded-3 px-3 py-1 error-message" role="alert">
+                <div class="d-flex justify-content-center align-items-center" style="column-gap: 5px;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Please, Write something to search.
+                </div>
+            </div>
+            <div id="result-error" class="alert alert-danger rounded-3 px-3 py-1 error-message" role="alert">
+                <div class="d-flex justify-content-center align-items-center" style="column-gap: 5px;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Sorry, No Result Found.
+                </div>
+            </div>
         </div>
 
         <!-- mobile details -->
