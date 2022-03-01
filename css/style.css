@@ -2,9 +2,21 @@
 .font-poppins{
     font-family: 'Poppins', sans-serif;
 }
+.font-roboto{
+    font-family: 'Roboto', sans-serif;
+}
 .fw-medium{
     font-weight: 500;
 }
 .green-bg{
     background-color: rgba(111, 207, 151, 0.7);
+}
+
+#mobile-details{
+    z-index: 99;
+    display: none;
+}
+.close-button{
+    top: 10px;
+    right: 10px;
 }
