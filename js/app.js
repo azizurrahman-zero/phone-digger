@@ -111,9 +111,12 @@ const displayDetails = mobile => {
     mobileImage.src = `${mobile.image}`
     mobileName.innerText = `${mobile.name}`;
     detailsText.innerHTML = `
-            <p class="fs-5"><i class="fa-solid fa-arrow-right"></i> Release Date : ${mobile.releaseDate ? mobile.releaseDate.substring(9) : 'Unknown'}</p>
+            <div class="d-flex mb-2 release-date flex-sm-row flex-column">
+                <p class="fs-5 mb-0"><i class="fa-solid fa-arrow-right"></i> Release Date :</p>
+                <p class="fs-5 mb-0">${mobile.releaseDate ? mobile.releaseDate.substring(9) : 'Unknown'}</p>
+            </div>
             
-            <p class="fs-5 table-responsive mb-1"><i class="fa-solid fa-arrow-right"></i> Main Features : 
+            <div class="fs-5 table-responsive mb-2"><i class="fa-solid fa-arrow-right"></i> Main Features : 
                 <div class="fs-6 mx-md-5 ms-1 me-3">
                     <div class="row border-bottom">
                         <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Chipset</p>
@@ -136,9 +139,9 @@ const displayDetails = mobile => {
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.sensors ?? 'Unknown'}</p>
                     </div>
                 </div>
-            </p>
+            </div>
 
-            <p class="fs-5 table-responsive mb-1"><i class="fa-solid fa-arrow-right"></i> Other Features : 
+            <div class="fs-5 table-responsive mb-2"><i class="fa-solid fa-arrow-right"></i> Other Features : 
                 <div class="fs-6 mx-md-5 ms-1 me-3">
                     <div class="row border-bottom">
                         <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 py-1">Bluetooth</p>
@@ -165,7 +168,7 @@ const displayDetails = mobile => {
                         <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.WLAN ?? 'Unknown'}</p>
                     </div>
                 </div>
-            </p>
+            </div>
     `
     window.location.href = '#mobile-details';
 }

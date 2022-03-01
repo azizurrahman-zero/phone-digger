@@ -22,6 +22,9 @@
     width: 80%;
     display: none;
 }
+.release-date{
+    column-gap: 5px;
+}
 
 /* error messages */
 .error-message{
