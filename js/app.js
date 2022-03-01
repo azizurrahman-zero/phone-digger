@@ -59,11 +59,11 @@ const displayResult = result => {
                     <div class="d-flex justify-content-center pt-3">
                         <img src="${mobile.image}" alt="${mobile.phone_name}">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column align-items-md-start align-items-center">
                         <h5 class="card-title">${mobile.phone_name}</h5>
                         <p class="card-text">by ${mobile.brand}</p>
                     </div>
-                    <div class="card-footer bg-white border-top-0">
+                    <div class="card-footer bg-white border-top-0 d-flex flex-column align-items-md-start align-items-center">
                         <button onclick="loadDetails('${mobile.slug}')" class="btn px-4 py-1 rounded-3 blue-bg text-white font-roboto fw-medium">Details</button>
                     </div>
                 </div>
@@ -99,65 +99,61 @@ const displayDetails = mobile => {
     mobileImage.src = `${mobile.image}`
     mobileName.innerText = `${mobile.name}`;
     detailsText.innerHTML = `
-        <ul>
-            <li class="fs-5">Release Date : ${mobile.releaseDate ? mobile.releaseDate : 'Unknown'}</li>
-            <li class="fs-5">Main Features : 
-                <table class="table caption-top fs-6">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Chipset</th>
-                            <td>${mainFeatures?.chipSet ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Display Size</th>
-                            <td>${mainFeatures?.displaySize ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Memory</th>
-                            <td>${mainFeatures?.memory ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Storage</th>
-                            <td>${mainFeatures?.storage ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Sensor</th>
-                            <td>${mainFeatures?.sensors ?? 'Unknown'}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </li>
-            <li class="fs-5">Other Features :
-                <table class="table caption-top fs-6">
-                    <tbody>
-                        <tr>
-                            <th scope="row">Bluetooth</th>
-                            <td>${others?.Bluetooth ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">GPS</th>
-                            <td>${others?.GPS ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">NFC</th>
-                            <td>${others?.NFC ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Radio</th>
-                            <td>${others?.Radio ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">USB</th>
-                            <td>${others?.USB ?? 'Unknown'}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">WLAN</th>
-                            <td>${others?.WLAN ?? 'Unknown'}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </li>
-        </ul>
+            <p class="fs-5"><i class="fa-solid fa-arrow-right"></i> Release Date : ${mobile.releaseDate ? mobile.releaseDate.substring(9) : 'Unknown'}</p>
+            
+            <p class="fs-5 table-responsive mb-1"><i class="fa-solid fa-arrow-right"></i> Main Features : 
+                <div class="fs-6 mx-md-5 ms-1 me-3">
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Chipset</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.chipSet ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Display Size</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.displaySize ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Memory</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.memory ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Storage</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.storage ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Sensor</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${mainFeatures?.sensors ?? 'Unknown'}</p>
+                    </div>
+                </div>
+            </p>
+
+            <p class="fs-5 table-responsive mb-1"><i class="fa-solid fa-arrow-right"></i> Other Features : 
+                <div class="fs-6 mx-md-5 ms-1 me-3">
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Bluetooth</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.Bluetooth ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">GPS</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.GPS ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">NFC</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.NFC ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">Radio</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.Radio ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">USB</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.USB ?? 'Unknown'}</p>
+                    </div>
+                    <div class="row border-bottom">
+                        <p class="fw-bold col-md-3 col-sm-4 col-12 m-0 p-sm-2 pb-1">WLAN</p>
+                        <p class="col-md-9 col-sm-8 col-12 m-0 p-sm-2 pb-1">${others?.WLAN ?? 'Unknown'}</p>
+                    </div>
+                </div>
+            </p>
     `
 }
 
